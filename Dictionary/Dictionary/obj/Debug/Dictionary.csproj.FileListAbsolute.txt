@@ -1,0 +1,14 @@
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\bin\Debug\Dictionary.exe.config
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\bin\Debug\Dictionary.exe
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\bin\Debug\Dictionary.pdb
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.csproj.AssemblyReference.cache
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.csproj.SuggestedBindingRedirects.cache
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.Form1.resources
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.FormView.resources
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.Properties.Resources.resources
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.csproj.GenerateResource.cache
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.csproj.CoreCompileInputs.cache
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.exe
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.pdb
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.SaveMenu.resources
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.FormViewer.resources
