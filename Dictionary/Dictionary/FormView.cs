@@ -20,7 +20,9 @@ namespace Dictionary
 
         private void FormView_Load(object sender, EventArgs e)
         {
+            
             dataGridCreater();
+
         }
 
         public void dataGridCreater()
@@ -38,10 +40,9 @@ namespace Dictionary
 
         public void refresh()
         {
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
-
             dataGridView1.DataSource = null;
+            dataGridView1.Columns.Clear();
+            dataGridCreater();
         }
         public void ButtonEkle()
         {
@@ -72,7 +73,6 @@ namespace Dictionary
             dataGridView1.Columns.Add(ViewLink);
             dataGridView1.Columns.Add(EditLink);
             dataGridView1.Columns.Add(DeleteLink);
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -87,7 +87,8 @@ namespace Dictionary
                 formVieweer.wordEngAc = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordEngAc"].Value);
                 formVieweer.fileLocation = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["ImgFileLocation"].Value);
 
-                formVieweer.ShowDialog();
+                formVieweer.Show();
+                this.Hide();
             }
             else if (e.ColumnIndex == 7)
             {
@@ -99,13 +100,34 @@ namespace Dictionary
                 saveMenu.wordEngAc = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordEngAc"].Value);
                 saveMenu.fileLocation = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["ImgFileLocation"].Value);
 
-                saveMenu.ShowDialog();
+                saveMenu.Show();
+                this.Hide();
             }
             else if (e.ColumnIndex == 8)
             {
-                SaveMenu formViewForWord = new SaveMenu();
-                formViewForWord.ShowDialog();
+                int Id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Id"].Value);
+                product.Delete(Id);
+
+                refresh();
+
             }
+        }
+
+        public void button2_Click(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void FormView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
         }
     }
 }

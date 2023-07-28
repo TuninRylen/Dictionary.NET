@@ -1,6 +1,6 @@
 ﻿namespace Dictionary
 {
-    partial class SaveMenu
+    partial class Add
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_FileLoad = new System.Windows.Forms.Button();
-            this.btn_Save = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -38,41 +37,32 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_WordTr = new System.Windows.Forms.TextBox();
             this.txt_WordTrAc = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Save = new System.Windows.Forms.Button();
+            this.btn_FileLoad = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btn_FileLoad
+            // button1
             // 
-            this.btn_FileLoad.Location = new System.Drawing.Point(633, 451);
-            this.btn_FileLoad.Name = "btn_FileLoad";
-            this.btn_FileLoad.Size = new System.Drawing.Size(185, 35);
-            this.btn_FileLoad.TabIndex = 5;
-            this.btn_FileLoad.Text = "Resim Yükle";
-            this.btn_FileLoad.UseVisualStyleBackColor = true;
-            this.btn_FileLoad.Click += new System.EventHandler(this.btn_FileLoad_Click);
-            // 
-            // btn_Save
-            // 
-            this.btn_Save.Location = new System.Drawing.Point(351, 510);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(268, 58);
-            this.btn_Save.TabIndex = 6;
-            this.btn_Save.Text = "Kaydet";
-            this.btn_Save.UseVisualStyleBackColor = true;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            this.button1.Location = new System.Drawing.Point(33, 517);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(124, 41);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Geri";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.pictureBox1);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox3.Location = new System.Drawing.Point(496, 16);
+            this.groupBox3.Location = new System.Drawing.Point(502, 14);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(453, 436);
-            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Picture-Resim";
             // 
@@ -91,10 +81,10 @@
             this.groupBox2.Controls.Add(this.txt_WordEng);
             this.groupBox2.Controls.Add(this.txt_WordEngAc);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox2.Location = new System.Drawing.Point(7, 256);
+            this.groupBox2.Location = new System.Drawing.Point(13, 254);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(466, 230);
-            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "English Word And Meaning";
             // 
@@ -122,10 +112,10 @@
             this.groupBox1.Controls.Add(this.txt_WordTr);
             this.groupBox1.Controls.Add(this.txt_WordTrAc);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox1.Location = new System.Drawing.Point(7, 16);
+            this.groupBox1.Location = new System.Drawing.Point(13, 14);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(466, 234);
-            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Türkçe Kelime ve Anlamı";
             // 
@@ -148,17 +138,27 @@
             this.txt_WordTrAc.Size = new System.Drawing.Size(448, 118);
             this.txt_WordTrAc.TabIndex = 9;
             // 
-            // button1
+            // btn_Save
             // 
-            this.button1.Location = new System.Drawing.Point(27, 519);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 41);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_Save.Location = new System.Drawing.Point(357, 508);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(268, 58);
+            this.btn_Save.TabIndex = 20;
+            this.btn_Save.Text = "Ekle";
+            this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
-            // SaveMenu
+            // btn_FileLoad
+            // 
+            this.btn_FileLoad.Location = new System.Drawing.Point(639, 449);
+            this.btn_FileLoad.Name = "btn_FileLoad";
+            this.btn_FileLoad.Size = new System.Drawing.Size(185, 35);
+            this.btn_FileLoad.TabIndex = 19;
+            this.btn_FileLoad.Text = "Resim Yükle";
+            this.btn_FileLoad.UseVisualStyleBackColor = true;
+            this.btn_FileLoad.Click += new System.EventHandler(this.btn_FileLoad_Click);
+            // 
+            // Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -169,9 +169,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.btn_FileLoad);
-            this.Name = "SaveMenu";
-            this.Text = "Save Menu";
-            this.Load += new System.EventHandler(this.SaveMenu_Load);
+            this.Name = "Add";
+            this.Text = "Add";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Add_FormClosing);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -183,8 +183,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btn_FileLoad;
-        private System.Windows.Forms.Button btn_Save;
+
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -193,6 +193,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txt_WordTr;
         private System.Windows.Forms.TextBox txt_WordTrAc;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.Button btn_FileLoad;
     }
 }

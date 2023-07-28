@@ -33,5 +33,20 @@ namespace Dictionary
             txt_WordEngAc.Text = wordEngAc;
             pictureBox1.ImageLocation = fileLocation;
         }
+
+        private void FormViewer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormView formView = new FormView();
+            this.Hide();
+
+            formView.FormClosed += (s, args) => this.Close();
+            formView.Show();
+            formView.Focus();
+        }
     }
 }

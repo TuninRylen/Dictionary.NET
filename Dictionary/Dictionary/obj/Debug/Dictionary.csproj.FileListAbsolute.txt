@@ -12,3 +12,4 @@ C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.exe
 C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.pdb
 C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.SaveMenu.resources
 C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.FormViewer.resources
+C:\Users\ugrst\source\repos\Dictionary\Dictionary\obj\Debug\Dictionary.Add.resources

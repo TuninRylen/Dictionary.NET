@@ -10,23 +10,34 @@ using System.Windows.Forms;
 
 namespace Dictionary
 {
-    public partial class SaveMenu : Form
+    public partial class Add : Form
     {
-        FormView view = new FormView();
+
         Words Word = new Words();
         ProductDal ProductDal = new ProductDal();
         ImageManagament ImageManagament = new ImageManagament();
 
-        public int Id;
         public string wordTr;
         public string wordEng;
         public string wordTrAc;
         public string wordEngAc;
         public string fileLocation;
 
-        public SaveMenu()
+        public Add()
         {
             InitializeComponent();
+        }
+
+        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            this.Hide();
+
+            form1.FormClosed += (s, args) => this.Close();
+            form1.Show();
+            form1.Focus();
         }
 
         private void btn_FileLoad_Click(object sender, EventArgs e)
@@ -36,41 +47,20 @@ namespace Dictionary
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            Word.Id = Id;
             Word.WordEng = txt_WordEng.Text;
             Word.WordTr = txt_WordTr.Text;
             Word.WordEngAc = txt_WordEngAc.Text;
             Word.WordTrAc = txt_WordTrAc.Text;
             Word.ImgFileLocation = pictureBox1.ImageLocation;
 
-            ProductDal.Update(Word);
+            ProductDal.Add(Word);
 
-            MessageBox.Show("BAŞARIYLA KAYDEDİLDİ !!");
-         
+            MessageBox.Show("BAŞARIYLA EKLENDİ !!");
         }
 
-        private void SaveMenu_Load(object sender, EventArgs e)
-        {
-            txt_WordTr.Text = wordTr;
-            txt_WordTrAc.Text = wordTrAc;
-            txt_WordEng.Text = wordEng;
-            txt_WordEngAc.Text = wordEngAc;
-            pictureBox1.ImageLocation = fileLocation;
-        }
-
-        private void SaveMenu_FormClosed(object sender, FormClosedEventArgs e)
+        private void Add_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FormView formView = new FormView();
-            this.Hide();
-
-            formView.FormClosed += (s, args) => this.Close();
-            formView.Show();
-            formView.Focus();
         }
     }
 }
