@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,17 @@ namespace Dictionary
 
         private void FormView_Load(object sender, EventArgs e)
         {
-            
+            dataGridView1.DataSource = product.GetAll();
             dataGridCreater();
 
         }
 
         public void dataGridCreater()
         {
-            dataGridView1.DataSource = product.GetAll();
-
+            dataGridView1.Columns["WordTr"].Width = 200;
+            dataGridView1.Columns["WordEng"].Width = 200;
+            dataGridView1.Columns["WordTr"].HeaderText = "Türkçe Kelime";
+            dataGridView1.Columns["WordEng"].HeaderText = "English Word";
             dataGridView1.Columns["Id"].Visible = false;
             dataGridView1.Columns["WordTrAc"].Visible = false;
             dataGridView1.Columns["WordEngAc"].Visible = false;
@@ -38,34 +41,30 @@ namespace Dictionary
             ButtonEkle();
         }
 
-        public void refresh()
+        public void dataClear()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.Columns.Clear();
-            dataGridCreater();
+            dataGridView1.Columns.Clear();  
         }
         public void ButtonEkle()
         {
             DataGridViewLinkColumn EditLink = new DataGridViewLinkColumn();
 
             EditLink.UseColumnTextForLinkValue = true;
-            EditLink.HeaderText = "Güncelle";
             EditLink.DataPropertyName = "edit";
             EditLink.LinkBehavior = LinkBehavior.SystemDefault;
             EditLink.Text = "Güncelle";
 
             DataGridViewLinkColumn DeleteLink = new DataGridViewLinkColumn();
 
-            DeleteLink.UseColumnTextForLinkValue = true;
-            DeleteLink.HeaderText = "Sil";
+            DeleteLink.UseColumnTextForLinkValue = true;     
             DeleteLink.DataPropertyName = "delete";
             DeleteLink.LinkBehavior = LinkBehavior.SystemDefault;
             DeleteLink.Text = "Sil";
 
             DataGridViewLinkColumn ViewLink = new DataGridViewLinkColumn();
 
-            ViewLink.UseColumnTextForLinkValue = true;
-            ViewLink.HeaderText = "Görüntüle";
+            ViewLink.UseColumnTextForLinkValue = true;    
             ViewLink.DataPropertyName = "view";
             ViewLink.LinkBehavior = LinkBehavior.SystemDefault;
             ViewLink.Text = "Görüntüle";
@@ -106,16 +105,33 @@ namespace Dictionary
             else if (e.ColumnIndex == 8)
             {
                 int Id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Id"].Value);
-                product.Delete(Id);
+                string WordTr = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordTr"].Value);
+                string WordEng = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordEng"].Value);
 
-                refresh();
+
+                DialogResult dialogResult = MessageBox.Show($"{WordTr} Kelimesini silmek istiyor musunuz?\n\nDo you want to delete the word {WordEng}?", "Delete", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    product.Delete(Id);
+
+                    dataClear();
+                    dataGridView1.DataSource = product.GetAll();
+                    dataGridCreater();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    
+                }
+
+                
 
             }
         }
 
         public void button2_Click(object sender, EventArgs e)
         {
-            refresh();
+            dataClear();
         }
 
         private void FormView_FormClosed(object sender, FormClosedEventArgs e)
@@ -128,6 +144,23 @@ namespace Dictionary
             Form1 form1 = new Form1();
             form1.Show();
             this.Hide();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(radioButton1.Checked)
+            {
+                dataClear();
+                dataGridView1.DataSource = product.Search(dataGridView1, textBox1, "WordTr");
+                dataGridCreater();
+            }
+            else
+            {
+                dataClear();
+                dataGridView1.DataSource = product.Search(dataGridView1, textBox1, "WordEng");
+                dataGridCreater();
+            }
+            
         }
     }
 }

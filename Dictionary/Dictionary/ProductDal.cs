@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Dictionary
 {
     public class ProductDal
     {
         SqlConnection cnn = new SqlConnection(@"server = (localdb)\mssqllocaldb; initial catalog = Words; integrated security = true;");
+        SqlDataAdapter da = new SqlDataAdapter();
+        DataTable dt = new DataTable();
 
         public void ConnectionControl()
         {
@@ -24,6 +30,47 @@ namespace Dictionary
             ConnectionControl();
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM Words", cnn);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            List<Words> wordslist = new List<Words>();
+
+            while (reader.Read())
+            {
+                Words word = new Words()
+                {
+                    Id = Convert.ToInt32(reader["Id"]),
+                    WordTr = Convert.ToString(reader["WordTr"]),
+                    WordEng = Convert.ToString(reader["WordEng"]),
+                    WordTrAc = Convert.ToString(reader["WordTrAc"]),
+                    WordEngAc = Convert.ToString(reader["WordEngAc"]),
+                    ImgFileLocation = Convert.ToString(reader["ImgFileLocation"])
+                };
+
+                wordslist.Add(word);
+            }
+
+            reader.Close();
+            cnn.Close();
+
+            return wordslist;
+        }
+
+        public void Listele(DataGridView dataGridView)
+        {
+            da = new SqlDataAdapter("Select WordTr, WordEng From Words", cnn);
+            cnn.Open();
+            da.Fill(dt);
+            dataGridView.DataSource = dt;
+            cnn.Close();
+
+
+        }
+
+        public List<Words> Search(DataGridView dataGridView, TextBoxBase text, string WordTrOrEng)
+        {
+            ConnectionControl();
+
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM Words WHERE {WordTrOrEng} LIKE '{text.Text}%'", cnn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             List<Words> wordslist = new List<Words>();
