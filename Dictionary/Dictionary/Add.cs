@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Dictionary
 {
+
     public partial class Add : Form
     {
 
@@ -17,6 +18,7 @@ namespace Dictionary
         ProductDal ProductDal = new ProductDal();
         ImageManagament ImageManagament = new ImageManagament();
 
+        public Point LocationPoint;
         public string wordTr;
         public string wordEng;
         public string wordTrAc;
@@ -33,6 +35,7 @@ namespace Dictionary
         private void button1_Click(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
+            form1.LocationPoint = this.Location;
             this.Hide();
 
             form1.FormClosed += (s, args) => this.Close();
@@ -61,6 +64,11 @@ namespace Dictionary
         private void Add_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Add_Load(object sender, EventArgs e)
+        {
+            this.Location = LocationPoint;
         }
     }
 }

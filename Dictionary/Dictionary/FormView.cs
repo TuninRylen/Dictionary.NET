@@ -14,6 +14,9 @@ namespace Dictionary
     public partial class FormView : Form
     {
         ProductDal product = new ProductDal();
+
+        public Point LocationPoint;
+
         public FormView()
         {
             InitializeComponent();
@@ -21,9 +24,9 @@ namespace Dictionary
 
         private void FormView_Load(object sender, EventArgs e)
         {
+            this.Location = LocationPoint;
             dataGridView1.DataSource = product.GetAll();
             dataGridCreater();
-
         }
 
         public void dataGridCreater()
@@ -79,6 +82,7 @@ namespace Dictionary
             if (e.ColumnIndex == 6)
             {
                 FormViewer formVieweer = new FormViewer();
+                formVieweer.LocationPoint = this.Location;
                 formVieweer.Id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Id"].Value);
                 formVieweer.wordTr = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordTr"].Value);
                 formVieweer.wordEng = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordEng"].Value);
@@ -92,6 +96,7 @@ namespace Dictionary
             else if (e.ColumnIndex == 7)
             {
                 SaveMenu saveMenu = new SaveMenu();
+                saveMenu.LocationPoint = this.Location;
                 saveMenu.Id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Id"].Value);
                 saveMenu.wordTr = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordTr"].Value);
                 saveMenu.wordEng = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordEng"].Value);
@@ -142,6 +147,7 @@ namespace Dictionary
         private void btn_back_Click(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
+            form1.LocationPoint = this.Location;
             form1.Show();
             this.Hide();
         }

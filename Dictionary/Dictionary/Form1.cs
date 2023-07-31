@@ -12,6 +12,10 @@ namespace Dictionary
 {
     public partial class Form1 : Form
     {
+        public Point LocationPoint;
+        FormView formView = new FormView();
+        Add add = new Add();
+
         public Form1()
         {
             InitializeComponent();
@@ -19,13 +23,12 @@ namespace Dictionary
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-        }
+            this.Location = LocationPoint;
+        }   
 
         private void button1_Click(object sender, EventArgs e)
-        {
-
-            FormView formView = new FormView();
+        {          
+            formView.LocationPoint = this.Location;
             this.Hide();
 
             formView.FormClosed += (s, args) => this.Close();
@@ -39,13 +42,18 @@ namespace Dictionary
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
-            Add add = new Add();
+        {    
+            add.LocationPoint = this.Location;
             this.Hide();
 
             add.FormClosed += (s, args) => this.Close();
             add.Show();
             add.Focus();
+        }
+
+        private void Form1_LocationChanged(object sender, EventArgs e)
+        {
+            label1.Text = this.Location.ToString();
         }
     }
 }

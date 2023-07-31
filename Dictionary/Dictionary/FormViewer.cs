@@ -12,7 +12,7 @@ namespace Dictionary
 {
     public partial class FormViewer : Form
     {
-
+        public Point LocationPoint;
         public int Id;
         public string wordTr;
         public string wordEng;
@@ -27,6 +27,7 @@ namespace Dictionary
 
         private void FormViewer_Load(object sender, EventArgs e)
         {
+            this.Location = LocationPoint;
             txt_WordTr.Text = wordTr;
             txt_WordTrAc.Text = wordTrAc;
             txt_WordEng.Text = wordEng;
@@ -42,6 +43,7 @@ namespace Dictionary
         private void button1_Click(object sender, EventArgs e)
         {
             FormView formView = new FormView();
+            formView.LocationPoint = this.Location;
             this.Hide();
 
             formView.FormClosed += (s, args) => this.Close();

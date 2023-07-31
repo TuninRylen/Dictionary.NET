@@ -172,6 +172,7 @@
             this.Name = "Add";
             this.Text = "Add";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Add_FormClosing);
+            this.Load += new System.EventHandler(this.Add_Load);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
