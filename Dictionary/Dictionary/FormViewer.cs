@@ -12,6 +12,8 @@ namespace Dictionary
 {
     public partial class FormViewer : Form
     {
+        public string WhichForm;
+
         public Point LocationPoint;
         public int Id;
         public string wordTr;
@@ -42,13 +44,27 @@ namespace Dictionary
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormView formView = new FormView();
-            formView.LocationPoint = this.Location;
-            this.Hide();
+            if(WhichForm == "Menu")
+            {
+                Form1 form1 = new Form1();
+                form1.LocationPoint = this.Location;
+                this.Hide();
 
-            formView.FormClosed += (s, args) => this.Close();
-            formView.Show();
-            formView.Focus();
+                form1.FormClosed += (s, args) => this.Close();
+                form1.Show();
+                form1.Focus();
+            }
+            else if(WhichForm == "FormView")
+            {
+                FormView formView = new FormView();
+                formView.LocationPoint = this.Location;
+                this.Hide();
+
+                formView.FormClosed += (s, args) => this.Close();
+                formView.Show();
+                formView.Focus();
+            }
+            
         }
     }
 }

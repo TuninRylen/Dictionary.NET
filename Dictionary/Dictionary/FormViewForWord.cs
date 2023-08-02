@@ -13,7 +13,7 @@ namespace Dictionary
     public partial class SaveMenu : Form
     {
         Words Word = new Words();
-        ProductDal ProductDal = new ProductDal();
+        WordsDal ProductDal = new WordsDal();
         ImageManagament ImageManagament = new ImageManagament();
 
         public Point LocationPoint;

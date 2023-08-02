@@ -13,7 +13,7 @@ namespace Dictionary
 {
     public partial class FormView : Form
     {
-        ProductDal product = new ProductDal();
+        WordsDal dal = new WordsDal();
 
         public Point LocationPoint;
 
@@ -25,7 +25,7 @@ namespace Dictionary
         private void FormView_Load(object sender, EventArgs e)
         {
             this.Location = LocationPoint;
-            dataGridView1.DataSource = product.GetAll();
+            dataGridView1.DataSource = dal.GetAll();
             dataGridCreater();
         }
 
@@ -83,6 +83,8 @@ namespace Dictionary
             {
                 FormViewer formVieweer = new FormViewer();
                 formVieweer.LocationPoint = this.Location;
+                formVieweer.WhichForm = "FormView";
+
                 formVieweer.Id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Id"].Value);
                 formVieweer.wordTr = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordTr"].Value);
                 formVieweer.wordEng = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordEng"].Value);
@@ -118,10 +120,10 @@ namespace Dictionary
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    product.Delete(Id);
+                    dal.Delete(Id);
 
                     dataClear();
-                    dataGridView1.DataSource = product.GetAll();
+                    dataGridView1.DataSource = dal.GetAll();
                     dataGridCreater();
                 }
                 else if (dialogResult == DialogResult.No)
@@ -157,13 +159,13 @@ namespace Dictionary
             if(radioButton1.Checked)
             {
                 dataClear();
-                dataGridView1.DataSource = product.Search(dataGridView1, textBox1, "WordTr");
+                dataGridView1.DataSource = dal.Search(dataGridView1, textBox1, "WordTr");
                 dataGridCreater();
             }
             else
             {
                 dataClear();
-                dataGridView1.DataSource = product.Search(dataGridView1, textBox1, "WordEng");
+                dataGridView1.DataSource = dal.Search(dataGridView1, textBox1, "WordEng");
                 dataGridCreater();
             }
             
