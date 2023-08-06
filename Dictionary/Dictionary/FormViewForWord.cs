@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Dictionary
     public partial class SaveMenu : Form
     {
         Words Word = new Words();
-        WordsDal ProductDal = new WordsDal();
+        WordsDal WordsDal = new WordsDal();
         ImageManagament ImageManagament = new ImageManagament();
 
         public Point LocationPoint;
@@ -36,18 +37,23 @@ namespace Dictionary
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            Word.Id = Id;
-            Word.WordEng = txt_WordEng.Text;
-            Word.WordTr = txt_WordTr.Text;
-            Word.WordEngAc = txt_WordEngAc.Text;
-            Word.WordTrAc = txt_WordTrAc.Text;
-            Word.ImgFileLocation = pictureBox1.ImageLocation;
-
-            ProductDal.Update(Word);
-
-            MessageBox.Show("BAŞARIYLA KAYDEDİLDİ !!");
-         
+            if (txt_WordEng.Text == "" || txt_WordTr.Text == "")
+            {
+                MessageBox.Show("BOŞ KUTUCUK BIRAKMAYINIZ !! \n\nDO NOT LEAVE EMPTY BOXES!!");
+            }
+            else
+            {
+                Word.Id = Id;
+                Word.WordEng = txt_WordEng.Text;
+                Word.WordTr = txt_WordTr.Text;      
+                Word.WordEngAc = txt_WordEngAc.Text;
+                Word.WordTrAc = txt_WordTrAc.Text;
+                Word.ImgFileLocation = pictureBox1.ImageLocation;
+                WordsDal.Update(Word);
+                MessageBox.Show("BAŞARIYLA KAYDEDİLDİ !! \n\nSAVE SUCCESSFULLY!!");
+            }
         }
+
 
         private void SaveMenu_Load(object sender, EventArgs e)
         {
@@ -73,6 +79,11 @@ namespace Dictionary
             formView.FormClosed += (s, args) => this.Close();
             formView.Show();
             formView.Focus();
+        }
+
+        private void SaveMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

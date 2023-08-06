@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Dictionary
 {
     public partial class FormView : Form
     {
-        WordsDal dal = new WordsDal();
+        WordsDal WordsDal = new WordsDal();
 
         public Point LocationPoint;
 
@@ -25,7 +26,7 @@ namespace Dictionary
         private void FormView_Load(object sender, EventArgs e)
         {
             this.Location = LocationPoint;
-            dataGridView1.DataSource = dal.GetAll();
+            dataGridView1.DataSource = WordsDal.GetAll();
             dataGridCreater();
         }
 
@@ -114,16 +115,17 @@ namespace Dictionary
                 int Id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Id"].Value);
                 string WordTr = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordTr"].Value);
                 string WordEng = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["WordEng"].Value);
-
+                string ImageFileLocation = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells["ImgFileLocation"].Value);
 
                 DialogResult dialogResult = MessageBox.Show($"{WordTr} Kelimesini silmek istiyor musunuz?\n\nDo you want to delete the word {WordEng}?", "Delete", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    dal.Delete(Id);
+                    WordsDal.Delete(Id);
 
+                    File.Delete(ImageFileLocation);
                     dataClear();
-                    dataGridView1.DataSource = dal.GetAll();
+                    dataGridView1.DataSource = WordsDal.GetAll();
                     dataGridCreater();
                 }
                 else if (dialogResult == DialogResult.No)
@@ -134,11 +136,6 @@ namespace Dictionary
                 
 
             }
-        }
-
-        public void button2_Click(object sender, EventArgs e)
-        {
-            dataClear();
         }
 
         private void FormView_FormClosed(object sender, FormClosedEventArgs e)
@@ -159,13 +156,13 @@ namespace Dictionary
             if(radioButton1.Checked)
             {
                 dataClear();
-                dataGridView1.DataSource = dal.Search(dataGridView1, textBox1, "WordTr");
+                dataGridView1.DataSource = WordsDal.Search(textBox1, "WordTr");
                 dataGridCreater();
             }
             else
             {
                 dataClear();
-                dataGridView1.DataSource = dal.Search(dataGridView1, textBox1, "WordEng");
+                dataGridView1.DataSource = WordsDal.Search(textBox1, "WordEng");
                 dataGridCreater();
             }
             

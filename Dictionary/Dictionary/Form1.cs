@@ -12,7 +12,7 @@ namespace Dictionary
 {
     public partial class Form1 : Form
     {
-        public Point LocationPoint;
+        public Point LocationPoint = new Point(400,200);
         FormView formView = new FormView();
         Add add = new Add();
 
@@ -30,25 +30,40 @@ namespace Dictionary
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            RandomWord();
+
+            this.Location = LocationPoint;
+        }   
+
+        private void RandomWord()
+        {
             Random random = new Random();
             WordsDal productDal = new WordsDal();
-            
+
             List<Words> words = new List<Words>();
             words = productDal.GetAll();
 
-           
             int sayı = random.Next(words.Count);
 
-            Id = words[sayı].Id;
-            wordEng = words[sayı].WordEng;
-            wordTr = words[sayı].WordTr;
-            wordEngAc = words[sayı].WordEngAc;
-            wordTrAc = words[sayı].WordTrAc;
-            fileLocation = words[sayı].ImgFileLocation;
+            try
+            {
+                Id = words[sayı].Id;
+                wordEng = words[sayı].WordEng;
+                wordTr = words[sayı].WordTr;
+                wordEngAc = words[sayı].WordEngAc;
+                wordTrAc = words[sayı].WordTrAc;
+                fileLocation = words[sayı].ImgFileLocation;
 
-            textBox1.Text = $"{words[sayı].WordTr}-{words[sayı].WordEng}";
-            this.Location = LocationPoint;
-        }   
+                textBox1.Text = $"{words[sayı].WordTr}-{words[sayı].WordEng}";
+                
+            }
+            catch (Exception)
+            {
+                textBox1.Text = "Plase Add Any Word!";
+            }
+
+            
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {          

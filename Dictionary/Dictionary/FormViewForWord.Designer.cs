@@ -154,7 +154,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 41);
             this.button1.TabIndex = 18;
-            this.button1.Text = "button1";
+            this.button1.Text = "Back";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -162,6 +162,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(969, 580);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
@@ -169,8 +170,11 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.btn_FileLoad);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "SaveMenu";
             this.Text = "Save Menu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveMenu_FormClosing);
             this.Load += new System.EventHandler(this.SaveMenu_Load);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -162,6 +162,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(969, 580);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
@@ -169,6 +170,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.btn_FileLoad);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Add";
             this.Text = "Add";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Add_FormClosing);

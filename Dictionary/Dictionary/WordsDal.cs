@@ -14,8 +14,6 @@ namespace Dictionary
     public class WordsDal
     {
         SqlConnection cnn = new SqlConnection(@"server = (localdb)\mssqllocaldb; initial catalog = Words; integrated security = true;");
-        SqlDataAdapter da = new SqlDataAdapter();
-        DataTable dt = new DataTable();
 
         public void ConnectionControl()
         {
@@ -56,7 +54,7 @@ namespace Dictionary
         }
 
 
-        public List<Words> Search(DataGridView dataGridView, TextBoxBase text, string WordTrOrEng)
+        public List<Words> Search(TextBoxBase text, string WordTrOrEng)
         {
             ConnectionControl();
 

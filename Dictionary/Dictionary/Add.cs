@@ -15,7 +15,7 @@ namespace Dictionary
     {
 
         Words Word = new Words();
-        WordsDal ProductDal = new WordsDal();
+        WordsDal WordsDal = new WordsDal();
         ImageManagament ImageManagament = new ImageManagament();
 
         public Point LocationPoint;
@@ -50,15 +50,21 @@ namespace Dictionary
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            Word.WordEng = txt_WordEng.Text;
-            Word.WordTr = txt_WordTr.Text;
-            Word.WordEngAc = txt_WordEngAc.Text;
-            Word.WordTrAc = txt_WordTrAc.Text;
-            Word.ImgFileLocation = pictureBox1.ImageLocation;
+            if (txt_WordEng.Text == "" || txt_WordTr.Text == "")
+            {
+                MessageBox.Show("BOŞ KUTUCUK BIRAKMAYINIZ !! \n\nDO NOT LEAVE EMPTY BOXES!!");
+            }
+            else
+            {
+                Word.WordEng = txt_WordEng.Text;
+                Word.WordTr = txt_WordTr.Text;
+                Word.WordEngAc = txt_WordEngAc.Text;
+                Word.WordTrAc = txt_WordTrAc.Text;
+                Word.ImgFileLocation = pictureBox1.ImageLocation;
+                WordsDal.Add(Word);
 
-            ProductDal.Add(Word);
-
-            MessageBox.Show("BAŞARIYLA EKLENDİ !!");
+                MessageBox.Show("BAŞARIYLA EKLENDİ !! \n\nADD SUCCESSFULLY!!");
+            }
         }
 
         private void Add_FormClosing(object sender, FormClosingEventArgs e)

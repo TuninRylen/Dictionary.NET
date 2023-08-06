@@ -25,13 +25,18 @@ namespace Dictionary
         {
             Guid guid = Guid.NewGuid();
 
-            pictureBox.ImageLocation = OpenOFD().FileName;
+            string fileLocationSource = OpenOFD().FileName; 
+            string fileLocationTarget = @"C:\Users\ugrst\source\repos\Dictionary\Dictionary\Images\" + guid + ".png";
 
-            string fileLocationSource = pictureBox.ImageLocation;
-            string filelocationTarget = @"C:\Users\ugrst\source\repos\Dictionary\Dictionary\Images\" + guid + ".png";
-
-            File.Copy(fileLocationSource, filelocationTarget, true);
+            try
+            {
+                File.Copy(fileLocationSource, fileLocationTarget, true);
+                pictureBox.ImageLocation = fileLocationTarget;
+            }
+            catch
+            {
+                MessageBox.Show("LÜTFEN BİR RESİM SEÇİNİZ!! \n\nPLASE SELECT A PİCTURE!!");
+            }
         }
-
     }
 }
